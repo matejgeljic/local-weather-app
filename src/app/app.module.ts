@@ -15,7 +15,7 @@ import { WeatherService } from './weather/weather.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [WeatherService],
   bootstrap: [AppComponent]

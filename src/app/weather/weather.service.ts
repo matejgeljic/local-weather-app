@@ -1,9 +1,14 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { IcurrentWeather} from '../interfaces';
 import { map } from 'rxjs/operators';
+
+export interface IWeatherService {
+  getCurrentWeather(city: string, country: string): Observable<IcurrentWeather>
+
+}
 
 interface ICurrentWeatherData {
   weather: [{
@@ -23,7 +28,7 @@ interface ICurrentWeatherData {
 @Injectable({
   providedIn: 'root'
 })
-export class WeatherService {
+export class WeatherService implements IWeatherService {
 
   constructor(private httpClient: HttpClient) { }
 
@@ -48,4 +53,5 @@ export class WeatherService {
   private convertKelvinToCelsius(kelvin: number): number {
     return kelvin - 273.15;
   }
+
 }
